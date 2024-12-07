@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:insert="~{fragments/header :: header}"></div>
+<div th:insert="~{fragments/nav :: nav}"></div>
+
+<div class="container">
+    <h1>
+        Welcome <span th:text="${name}"></span>
+    </h1>
+    <hr>
+    <h3>Enter Todo Details</h3>
+    <form th:action="@{/add-todo}" th:object="${todo}" method="post">
+        <h5>
+            <fieldset class="mb-3">
+                <label class="mb-2" for="description">Description</label>
+                <div class="col-md-3">
+                    <input type="text" id="description" th:field="*{description}" class="form-control" required="required" />
+                </div>
+                <div th:if="${#fields.hasErrors('description')}" class="text-warning">
+                    <p th:errors="*{description}"></p>
+                </div>
+            </fieldset>
+            <fieldset class="mb-3">
+                <label class="mb-2" for="targetDate">Target Date</label>
+                <div class="col-md-3">
+                    <input type="text" id="targetDate" th:field="*{targetDate}" class="form-control"/>
+                </div>
+            </fieldset>
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{done}" />
+        </h5>
+        <input type="submit" class="btn btn-success" />
+    </form>
+</div>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js}"></script>
+<script type="text/javascript">
+    $('#targetDate').datepicker({
+        format : 'yyyy-mm-dd'
+    });
+</script>
