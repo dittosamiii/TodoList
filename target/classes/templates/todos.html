@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
-<div th:insert="~{fragments/header :: header}"></div>
-<div th:insert="~{fragments/nav :: nav}"></div>
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/nav :: nav}"></div>
 
 <div class="container">
-    <h1>
-        Welcome <span th:text="${name}"></span>
-    </h1>
-    <hr>
-    <h3>YOUR TODOS:</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>DESCRIPTION</th>
-            <th>TARGET DATE</th>
-            <th>DONE</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="todo : ${todos}">
-            <td th:text="${todo.description}"></td>
-            <td th:text="${todo.targetDate}"></td>
-            <td th:text="${todo.done}"></td>
-            <td><a th:href="@{/update-todo(id=${todo.id})}" class="btn btn-warning">Update</a></td>
-            <td><a th:href="@{/delete-todo(id=${todo.id})}" class="btn btn-danger">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/add-todo}" class="btn btn-secondary">Add Todo</a>
+	<h1>
+		Welcome <span th:text="${name}"></span>
+	</h1>
+	<hr>
+	<h3>YOUR TODOS:</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>DESCRIPTION</th>
+				<th>TARGET DATE</th>
+				<th>DONE</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="todo : ${todos}">
+				<td th:text="${todo.description}"></td>
+				<td th:text="${todo.targetDate}"></td>
+				<td th:text="${todo.done}"></td>
+				<td><a th:href="@{/update-todo(id=${todo.id})}"
+					class="btn btn-warning">Update</a></td>
+				<td><a th:href="@{/delete-todo(id=${todo.id})}"
+					class="btn btn-danger">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/add-todo}" class="btn btn-secondary">Add Todo</a>
 </div>
 
-<div th:insert="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>

@@ -1,44 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
-<div th:insert="~{fragments/header :: header}"></div>
-<div th:insert="~{fragments/nav :: nav}"></div>
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/nav :: nav}"></div>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <div class="container">
-    <h1>
-        Welcome <span th:text="${name}"></span>
-    </h1>
-    <hr>
-    <h3>Enter Todo Details</h3>
-    <form th:action="@{/add-todo}" th:object="${todo}" method="post">
-        <h5>
-            <fieldset class="mb-3">
-                <label class="mb-2" for="description">Description</label>
-                <div class="col-md-3">
-                    <input type="text" id="description" th:field="*{description}" class="form-control" required="required" />
-                </div>
-                <div th:if="${#fields.hasErrors('description')}" class="text-warning">
-                    <p th:errors="*{description}"></p>
-                </div>
-            </fieldset>
-            <fieldset class="mb-3">
-                <label class="mb-2" for="targetDate">Target Date</label>
-                <div class="col-md-3">
-                    <input type="text" id="targetDate" th:field="*{targetDate}" class="form-control"/>
-                </div>
-            </fieldset>
-            <input type="hidden" th:field="*{id}" />
-            <input type="hidden" th:field="*{done}" />
-        </h5>
-        <input type="submit" class="btn btn-success" />
-    </form>
+	<h1>
+		Welcome <span th:text="${name}"></span>
+	</h1>
+	<hr>
+	<h3>Enter Todo Details</h3>
+	<form role="form" th:action="@{/add-todo}" th:object="${todo}"
+		method="post">
+		<div class="mb-3">
+			<label class="mb-2 form-label" for="description">Description</label>
+			<div class="col-md-3">
+				<input type="text" id="description" name="description"
+					th:field="*{description}" class="form-control" />
+				<p th:if="${#fields.hasErrors('description')}" class="text-warning"
+					th:errors="*{description}"></p>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="mb-2 form-label" for="targetDate">Target Date</label>
+			<div class="col-md-3">
+				<input type="text" id="targetDate" name="targetDate"
+					th:field="*{targetDate}" class="form-control" />
+				<p th:if="${#fields.hasErrors('targetDate')}" class="text-warning"
+					th:errors="*{targetDate}"></p>
+			</div>
+		</div>
+		<input type="hidden" th:field="*{id}" /> <input type="hidden"
+			th:field="*{done}" /> <input type="submit" class="btn btn-success" />
+	</form>
 </div>
 
-<div th:insert="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
-<script th:src="@{/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js}"></script>
+<script
+	th:src="@{/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js}"></script>
 <script type="text/javascript">
-    $('#targetDate').datepicker({
-        format : 'yyyy-mm-dd'
-    });
+	$('#targetDate').datepicker({
+		format : 'yyyy-mm-dd'
+	});
 </script>
+
+</body>
+</html>

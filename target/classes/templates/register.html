@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>TODO Login</title>
+<title>TODO Register</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -20,35 +21,36 @@
 	<br />
 	<div class="container">
 		<div class="row col-md-4 offset-md-4">
-			<div th:if="${param.logout}">
-				<div class="alert alert-success">You have been logout
+			<div th:if="${param.success}">
+				<div class="alert alert-info">You have been registered
 					successfully.</div>
-			</div>
-			<div th:if="${param.error}">
-				<div class="alert alert-danger">Invalid username or password.</div>
 			</div>
 			<div class="card">
 				<div class="card-header ">
-					<h2 class="text-center">Login Panel</h2>
+					<h2 class="text-center">Register Panel</h2>
 				</div>
 				<div class="card-body">
-					<form method="post" role="form" th:action="@{/perform_login}"
-						class="form-horizontal">
+					<form method="post" role="form" th:action="@{/register}"
+						th:object="${user}" class="form-horizontal">
 						<div class="form-group mb-3">
 							<label class="form-label"><strong>Username *</strong></label> <input
 								class="form-control" name="username" id="username"
 								placeholder="Enter your username" type="text" />
+							<p th:if="${#fields.hasErrors('username')}"
+								th:errors="*{username}" class="text-danger"></p>
 						</div>
 						<div class="form-group mb-3">
 							<label class="form-label"><strong>Password *</strong></label> <input
 								class="form-control" name="password" id="password"
 								placeholder="Enter your password" type="password" />
+							<p th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}" class="text-danger"></p>
 						</div>
 						<div class="form-group mb-3 text-center">
-							<button type="submit" class="btn btn-primary ">Login</button>
+							<button type="submit" class="btn btn-primary ">Register</button>
 						</div>
 						<div class="form-group mb-3 text-center">
-							<span>Haven't registered? <a th:href="@{/register}">Register
+							<span>Already registered? <a th:href="@{/login}">Login
 									Here</a></span>
 						</div>
 					</form>

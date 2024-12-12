@@ -1,6 +1,6 @@
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10001, 'admin', 'Learn Python', CURRENT_DATE(), false);
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10002, 'admin', 'Learn Security', CURRENT_DATE(), false);
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10003, 'admin', 'Learn Java', CURRENT_DATE(), false);
+insert into users(username, password) values('admin','$2a$10$k9644mshajjDvMhU8p76.u4sgOFuINZDkZ/csNgzFY99W1diZjBuC');
+
+insert into todos(username, description, target_date, done) values 
+('admin', 'Learn Python', CURRENT_DATE(), false),
+('admin', 'Learn Java', CURRENT_DATE(), false),
+('admin', 'Learn Web Development', CURRENT_DATE(), false);

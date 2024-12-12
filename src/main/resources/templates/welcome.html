@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="~{fragments/header :: header}"></div>
 <div th:replace="~{fragments/nav :: nav}"></div>
 
 <div class="container">
-    <h1>
-        Welcome <span th:text="${name}"></span>
-    </h1>
-    <hr>
-    <h3>
-        Manage Your TODOs <a th:href="@{/list-todos}" class="btn btn-info">Click Here</a> <br>
-    </h3>
+	<h1>
+		Welcome <span th:text="${name}"></span>
+	</h1>
+	<hr>
+	<h3>
+		Manage Your TODOs <a th:href="@{/list-todos}" class="btn btn-info">Click
+			Here</a> <br>
+	</h3>
 </div>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
